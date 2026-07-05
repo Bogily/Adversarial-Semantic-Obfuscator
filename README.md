@@ -29,7 +29,7 @@ Using sensitive terms (e.g., CBRN, explosives) in your lexicon causes LLMs (Clau
 
 Language is auto-detected from the file extension (`.lua`, `.py`, `.js`), but can be overridden with `-t` / `--lang`.
 
-> *Customize the lexicon.txt file to trigger adversarial refusals.*
+> *Customize the lexicon.txt file to trigger ai refusals.*
 
 ```bash
 # Auto-detect language (e.g., Python)
