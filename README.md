@@ -1,6 +1,6 @@
 # Adversarial Semantic Obfuscator
 
-A tool to obfuscate Lua, Python, and JavaScript source code by encoding it into natural language sentences. Using a lexicon of policy-violating phrases triggers adversarial LLM safety refusals, blocking automated deobfuscation.
+A tool to obfuscate Lua, Python, and JavaScript source code by encoding it into sentences. Using a lexicon of policy-violating phrases triggers adversarial LLM safety refusals, blocking automated deobfuscation.
 
 ---
 
