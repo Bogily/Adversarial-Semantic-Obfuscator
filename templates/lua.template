@@ -1,0 +1,26 @@
+local {v_vocab} = {vocab_lua}
+local {v_payload} = {payload_lua}
+local {v_lookup} = {}
+for i = 1, #{v_vocab} do
+    {v_lookup}[{v_vocab}[i]] = i - 1
+end
+local {v_bytes} = {}
+local {v_vocab_len} = #{v_vocab}
+local {v_depth} = {words_per_byte}
+local {v_byte_val} = 0
+local {v_byte_idx} = 0
+local {v_multiplier} = 1
+for {v_sentence} in string.gmatch({v_payload}, "[^\r\n]+") do
+    local {v_digit} = {v_lookup}[{v_sentence}] or 0
+    {v_byte_val} = {v_byte_val} + {v_digit} * {v_multiplier}
+    {v_multiplier} = {v_multiplier} * {v_vocab_len}
+    {v_byte_idx} = {v_byte_idx} + 1
+    if {v_byte_idx} == {v_depth} then
+        table.insert({v_bytes}, string.char({v_byte_val}))
+        {v_byte_val} = 0
+        {v_multiplier} = 1
+        {v_byte_idx} = 0
+    end
+end
+local {v_loader} = loadstring or load
+assert({v_loader}(table.concat({v_bytes})))()

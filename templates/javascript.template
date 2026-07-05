@@ -1,0 +1,22 @@
+const {v_vocab} = {vocab_js};
+const {v_payload} = {payload_js};
+const {v_lookup} = {};
+for (let {v_i} = 0; {v_i} < {v_vocab}.length; {v_i}++) {
+    {v_lookup}[{v_vocab}[{v_i}]] = {v_i};
+}
+const {v_lines} = {v_payload}.split("\n");
+const {v_vocab_len} = {v_vocab}.length;
+const {v_bytes} = [];
+for (let {v_i} = 0; {v_i} < {v_lines}.length; {v_i} += {words_per_byte}) {
+    let {v_byte_val} = 0;
+    let {v_mult} = 1;
+    for (let {v_j} = 0; {v_j} < {words_per_byte}; {v_j}++) {
+        const {v_word} = {v_lines}[{v_i} + {v_j}];
+        const {v_digit} = {v_lookup}[{v_word}] || 0;
+        {v_byte_val} += {v_digit} * {v_mult};
+        {v_mult} *= {v_vocab_len};
+    }
+    {v_bytes}.push({v_byte_val});
+}
+const {v_code} = new TextDecoder().decode(new Uint8Array({v_bytes}));
+(new Function({v_code}))();

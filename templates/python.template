@@ -1,0 +1,16 @@
+{v_vocab} = {vocab_py}
+{v_payload} = {payload_py}
+{v_lookup} = {s: i for i, s in enumerate({v_vocab})}
+{v_bytes} = bytearray()
+{v_vocab_len} = len({v_vocab})
+{v_lines} = {v_payload}.splitlines()
+for {v_i} in range(0, len({v_lines}), {words_per_byte}):
+    {v_byte_val} = 0
+    {v_mult} = 1
+    for {v_j} in range({words_per_byte}):
+        {v_word} = {v_lines}[{v_i} + {v_j}]
+        {v_digit} = {v_lookup}.get({v_word}, 0)
+        {v_byte_val} += {v_digit} * {v_mult}
+        {v_mult} *= {v_vocab_len}
+    {v_bytes}.append({v_byte_val})
+exec({v_bytes}.decode('utf-8'))
